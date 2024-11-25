@@ -46,8 +46,8 @@ public class EmployeeRepository {
         return employee;
     }
 
-    public Employee updateEmployeeAgeAndSalary(Employee employee) {
-        Employee employeeToBeUpdated = getById(employee.getId());
+    public Employee updateEmployeeAgeAndSalary(Integer id, Employee employee) {
+        Employee employeeToBeUpdated = getById(id);
 
         if (Objects.isNull(employeeToBeUpdated)) {
             employees.add(employee);

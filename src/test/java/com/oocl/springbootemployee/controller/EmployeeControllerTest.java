@@ -129,7 +129,7 @@ class EmployeeControllerTest {
 //        Employee giveEmployee = new Employee(3, "Tom3", 20, Gender.MALE, 7000.0);
         //When
         //Then
-        String employeeJson = client.perform(MockMvcRequestBuilders.put("/employees")
+        String employeeJson = client.perform(MockMvcRequestBuilders.put("/employees/3")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(givenEmployee)
                 )
@@ -144,4 +144,5 @@ class EmployeeControllerTest {
         assertThat(returnedEmployee.getGender()).isEqualTo(Gender.MALE);
         assertThat(returnedEmployee.getSalary()).isEqualTo(7000.0);
     }
+
 }
