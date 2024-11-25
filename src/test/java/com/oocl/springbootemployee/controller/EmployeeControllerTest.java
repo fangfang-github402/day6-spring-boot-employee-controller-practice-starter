@@ -19,6 +19,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @AutoConfigureJsonTesters
 @AutoConfigureMockMvc
@@ -33,14 +34,8 @@ class EmployeeControllerTest {
     @Autowired
     private JacksonTester<List<Employee>> listJson;
 
-
-
-
-
     @BeforeEach
     public void resetRepo() {    employeeRepository.resetRepository();}
-
-
 
     @Test
     void should_return_employee_when_get_all_given_employees() throws Exception {
@@ -121,5 +116,32 @@ class EmployeeControllerTest {
         assertThat(returnedEmployee.getId()).isEqualTo(employeeId);
     }
 
+    @Test
+    void should_return_employee_when_update_age_and_salary_given_employee() throws Exception {
+        //Given
+        String givenEmployee = "{\n" +
+                "        \"id\": 3,\n" +
+                "        \"name\": \"Tom3\",\n" +
+                "        \"age\": 20,\n" +
+                "        \"gender\": \"MALE\",\n" +
+                "        \"salary\": 7000.0\n" +
+                "    }";
+//        Employee giveEmployee = new Employee(3, "Tom3", 20, Gender.MALE, 7000.0);
+        //When
+        //Then
+        String employeeJson = client.perform(MockMvcRequestBuilders.put("/employees")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(givenEmployee)
+                )
+                .andDo(print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString();
 
+        Employee returnedEmployee = json.parseObject(employeeJson);
+        assertThat(returnedEmployee.getId()).isEqualTo(3);
+        assertThat(returnedEmployee.getName()).isEqualTo("Tom3");
+        assertThat(returnedEmployee.getAge()).isEqualTo(20);
+        assertThat(returnedEmployee.getGender()).isEqualTo(Gender.MALE);
+        assertThat(returnedEmployee.getSalary()).isEqualTo(7000.0);
+    }
 }

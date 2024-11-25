@@ -39,6 +39,12 @@ public class EmployeeController {
         return employeeRepository.createEmployee(employee);
     }
 
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public Employee updateEmployeeAgeAndSalary(@RequestBody Employee employee) {
+        return employeeRepository.updateEmployeeAgeAndSalary(employee);
+    }
+
 
 
 }

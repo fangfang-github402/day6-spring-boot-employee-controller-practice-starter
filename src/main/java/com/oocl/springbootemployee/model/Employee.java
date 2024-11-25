@@ -7,7 +7,7 @@ public class Employee {
     private String name;
     private Integer age;
     private Gender gender;
-    private double salary;
+    private Double salary;
 
     public Employee(Integer id, String name, Integer age, Gender gender, double salary) {
         this.id = id;
