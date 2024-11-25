@@ -174,10 +174,8 @@ class EmployeeControllerTest {
                 .andReturn().getResponse().getContentAsString();
 
         Employee returnedEmployee = listJson.parseObject(employeesJSONString).get(0);
-        assertThat(returnedEmployee.getId()).isEqualTo(2);
-        assertThat(returnedEmployee.getName()).isEqualTo("Tom2");
-        assertThat(returnedEmployee.getAge()).isEqualTo(18);
-        assertThat(returnedEmployee.getGender()).isEqualTo(Gender.MALE);
-        assertThat(returnedEmployee.getSalary()).isEqualTo(7000.0);
+        assertThat(returnedEmployee)
+                .usingRecursiveComparison()
+                .isEqualTo(givenEmployee);
     }
 }
