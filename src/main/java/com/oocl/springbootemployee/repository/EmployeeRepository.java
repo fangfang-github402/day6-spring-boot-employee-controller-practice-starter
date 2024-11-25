@@ -18,6 +18,13 @@ public class EmployeeRepository {
         employees.add(new Employee(3,"Tom3",18,Gender.MALE,6000));
     }
 
+    public void resetRepository() {
+        employees.clear();
+        employees.add(new Employee(1,"Tom1",18, Gender.MALE,5000));
+        employees.add(new Employee(2,"Tom2",18,Gender.MALE,7000));
+        employees.add(new Employee(3,"Tom3",18,Gender.MALE,6000));
+    }
+
     public List<Employee> getAll() {
         return employees;
     }
@@ -33,7 +40,7 @@ public class EmployeeRepository {
     }
 
     public Employee createEmployee(Employee employee) {
-        employee.setId(4);
+        employee.setId(employees.size() + 1);
         employees.add(employee);
         return employee;
     }

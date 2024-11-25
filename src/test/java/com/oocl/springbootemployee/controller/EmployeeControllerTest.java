@@ -3,6 +3,7 @@ package com.oocl.springbootemployee.controller;
 import com.oocl.springbootemployee.model.Employee;
 import com.oocl.springbootemployee.model.Gender;
 import com.oocl.springbootemployee.repository.EmployeeRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
@@ -31,6 +32,15 @@ class EmployeeControllerTest {
     private JacksonTester<Employee> json;
     @Autowired
     private JacksonTester<List<Employee>> listJson;
+
+
+
+
+
+    @BeforeEach
+    public void resetRepo() {    employeeRepository.resetRepository();}
+
+
 
     @Test
     void should_return_employee_when_get_all_given_employees() throws Exception {
@@ -84,9 +94,8 @@ class EmployeeControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andReturn().getResponse().getContentAsString();
 
-        client.perform(MockMvcRequestBuilders.get("/employees"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(4)));
+        List<Employee> newEmployeeList = employeeRepository.getAll();
+        assertThat(newEmployeeList.size()).isEqualTo(4);
 
         Employee returnedEmployee = json.parseObject(employeeJson);
         assertThat(returnedEmployee.getId()).isPositive();
