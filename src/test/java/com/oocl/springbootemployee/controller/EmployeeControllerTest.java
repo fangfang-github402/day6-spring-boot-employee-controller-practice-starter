@@ -152,7 +152,7 @@ class EmployeeControllerTest {
         //Given
         //When
         //Then
-        String employeeJson = client.perform(MockMvcRequestBuilders.delete("/employees/1")
+        client.perform(MockMvcRequestBuilders.delete("/employees/1")
                         .contentType(MediaType.APPLICATION_JSON)
                 )
                 .andExpect(MockMvcResultMatchers.status().isNoContent())
