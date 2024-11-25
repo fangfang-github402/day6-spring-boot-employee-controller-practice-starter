@@ -40,7 +40,6 @@ class EmployeeControllerTest {
         final List<Employee> givenEmployees = employeeRepository.getAll();
         //When
         //Then
-
         String employeesJSONString = client.perform(MockMvcRequestBuilders.get("/employees"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(3)))
@@ -50,7 +49,6 @@ class EmployeeControllerTest {
         assertThat(employeeList)
                 .usingRecursiveComparison()
                 .isEqualTo(givenEmployees);
-
     }
 
     @Test
@@ -63,7 +61,6 @@ class EmployeeControllerTest {
         String employeeJson = client.perform(MockMvcRequestBuilders.get("/employees/" + employeeId))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString();
-
 
         Employee returnedEmployee = json.parseObject(employeeJson);
         assertThat(returnedEmployee.getId()).isEqualTo(employeeId);
