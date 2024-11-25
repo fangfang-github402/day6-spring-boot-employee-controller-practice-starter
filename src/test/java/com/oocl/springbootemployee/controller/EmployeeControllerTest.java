@@ -145,4 +145,18 @@ class EmployeeControllerTest {
         assertThat(returnedEmployee.getSalary()).isEqualTo(7000.0);
     }
 
+    @Test
+    void should_delete_employee_success() throws Exception {
+        //Given
+        //When
+        //Then
+        String employeeJson = client.perform(MockMvcRequestBuilders.delete("/employees/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(MockMvcResultMatchers.status().isNoContent())
+                .andReturn().getResponse().getContentAsString();
+
+        List<Employee> newEmployeeList = employeeRepository.getAll();
+        assertThat(newEmployeeList.size()).isEqualTo(2);
+    }
 }

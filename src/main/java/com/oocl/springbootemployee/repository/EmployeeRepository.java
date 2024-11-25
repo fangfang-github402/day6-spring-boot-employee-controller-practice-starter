@@ -71,4 +71,14 @@ public class EmployeeRepository {
         }
         return employee;
     }
+
+    public void deleteById(Integer employeeId) {
+        Employee employee = getById(employeeId);
+        if (Objects.isNull(employee)) {
+            return;
+        }
+        employees = employees.stream()
+                .filter(employeeSearch -> !employeeSearch.getId().equals(employeeId))
+                .collect(Collectors.toList());
+    }
 }
