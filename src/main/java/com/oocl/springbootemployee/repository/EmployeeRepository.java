@@ -52,9 +52,6 @@ public class EmployeeRepository {
         if (Objects.isNull(employeeToBeUpdated)) {
             employees.add(employee);
         }
-
-        System.out.println(employeeToBeUpdated.toString());
-
         employeeToBeUpdated.setAge(employee.getAge());
         employeeToBeUpdated.setSalary(employee.getSalary());
         employees = employees.stream()
