@@ -40,12 +40,6 @@ class EmployeeControllerTest {
         final List<Employee> givenEmployees = employeeRepository.getAll();
         //When
         //Then
-//        client.perform(MockMvcRequestBuilders.get("/employees"))
-//                .andExpect(MockMvcResultMatchers.status().isOk())
-//                .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(3)))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value(givenEmployees.get(0).getName()))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$[1].name").value(givenEmployees.get(1).getName()))
-//                .andExpect(MockMvcResultMatchers.jsonPath("$[2].name").value(givenEmployees.get(2).getName()));
 
         String employeesJSONString = client.perform(MockMvcRequestBuilders.get("/employees"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
