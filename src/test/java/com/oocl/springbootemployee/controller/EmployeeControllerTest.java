@@ -35,7 +35,9 @@ class EmployeeControllerTest {
     private JacksonTester<List<Employee>> listJson;
 
     @BeforeEach
-    public void resetRepo() {    employeeRepository.resetRepository();}
+    public void resetRepo() {
+        employeeRepository.resetRepository();
+    }
 
     @Test
     void should_return_employee_when_get_all_given_employees() throws Exception {
@@ -163,10 +165,10 @@ class EmployeeControllerTest {
     @Test
     void should_return_paged_employee_list_when_page_given_page_and_size() throws Exception {
         //Given
-        Employee givenEmployee = new Employee(2,"Tom2",18,Gender.MALE,7000.0);
+        Employee givenEmployee = new Employee(2, "Tom2", 18, Gender.MALE, 7000.0);
         //When
         //Then
-        String employeesJSONString = client.perform(MockMvcRequestBuilders.get("/employees").param("page","2").param("size","1"))
+        String employeesJSONString = client.perform(MockMvcRequestBuilders.get("/employees").param("page", "2").param("size", "1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(1)))
                 .andReturn().getResponse().getContentAsString();

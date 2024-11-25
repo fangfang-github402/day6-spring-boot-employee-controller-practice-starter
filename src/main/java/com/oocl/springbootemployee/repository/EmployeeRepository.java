@@ -16,16 +16,16 @@ public class EmployeeRepository {
     private List<Employee> employees = new ArrayList<>();
 
     public EmployeeRepository() {
-        employees.add(new Employee(1,"Tom1",18, Gender.MALE,5000.0));
-        employees.add(new Employee(2,"Tom2",18,Gender.MALE,7000.0));
-        employees.add(new Employee(3,"Tom3",18,Gender.MALE,6000.0));
+        employees.add(new Employee(1, "Tom1", 18, Gender.MALE, 5000.0));
+        employees.add(new Employee(2, "Tom2", 18, Gender.MALE, 7000.0));
+        employees.add(new Employee(3, "Tom3", 18, Gender.MALE, 6000.0));
     }
 
     public void resetRepository() {
         employees.clear();
-        employees.add(new Employee(1,"Tom1",18, Gender.MALE,5000.0));
-        employees.add(new Employee(2,"Tom2",18,Gender.MALE,7000.0));
-        employees.add(new Employee(3,"Tom3",18,Gender.MALE,6000.0));
+        employees.add(new Employee(1, "Tom1", 18, Gender.MALE, 5000.0));
+        employees.add(new Employee(2, "Tom2", 18, Gender.MALE, 7000.0));
+        employees.add(new Employee(3, "Tom3", 18, Gender.MALE, 6000.0));
     }
 
     public List<Employee> getAll() {
@@ -37,7 +37,7 @@ public class EmployeeRepository {
     }
 
     public List<Employee> getByGender(Gender gender) {
-            return employees.stream()
+        return employees.stream()
                 .filter(employee -> employee.getGender().equals(gender))
                 .collect(Collectors.toList());
     }
@@ -86,7 +86,7 @@ public class EmployeeRepository {
 
     public List<Employee> getEmployeesPaged(Integer page, Integer size) {
         List<Employee> employeesPaged = employees.stream()
-                .skip((page-1)*size)
+                .skip((page - 1) * size)
                 .limit(size)
                 .collect(Collectors.toList());
         return employeesPaged;
