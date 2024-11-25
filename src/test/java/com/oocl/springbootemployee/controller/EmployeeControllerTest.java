@@ -159,4 +159,23 @@ class EmployeeControllerTest {
         List<Employee> newEmployeeList = employeeRepository.getAll();
         assertThat(newEmployeeList.size()).isEqualTo(2);
     }
+
+    @Test
+    void should_return_paged_employee_list_when_page_given_page_and_size() throws Exception {
+        //Given
+        Employee givenEmployee = new Employee(2,"Tom2",18,Gender.MALE,7000.0);
+        //When
+        //Then
+        String employeesJSONString = client.perform(MockMvcRequestBuilders.get("/employees").param("page","2").param("size","1"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$", hasSize(1)))
+                .andReturn().getResponse().getContentAsString();
+
+        Employee returnedEmployee = listJson.parseObject(employeesJSONString).get(0);
+        assertThat(returnedEmployee.getId()).isEqualTo(2);
+        assertThat(returnedEmployee.getName()).isEqualTo("Tom2");
+        assertThat(returnedEmployee.getAge()).isEqualTo(18);
+        assertThat(returnedEmployee.getGender()).isEqualTo(Gender.MALE);
+        assertThat(returnedEmployee.getSalary()).isEqualTo(7000.0);
+    }
 }
