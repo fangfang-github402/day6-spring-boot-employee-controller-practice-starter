@@ -128,7 +128,6 @@ class EmployeeControllerTest {
                 "        \"gender\": \"MALE\",\n" +
                 "        \"salary\": 7000.0\n" +
                 "    }";
-//        Employee giveEmployee = new Employee(3, "Tom3", 20, Gender.MALE, 7000.0);
         //When
         //Then
         String employeeJson = client.perform(MockMvcRequestBuilders.put("/employees/3")
