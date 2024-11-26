@@ -1,8 +1,7 @@
 package com.oocl.springbootemployee.controller;
 
 import com.oocl.springbootemployee.model.Company;
-import com.oocl.springbootemployee.model.Employee;
-import com.oocl.springbootemployee.repository.CommanyRepository;
+import com.oocl.springbootemployee.repository.CompanyRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
@@ -25,7 +24,7 @@ public class CompanyControllerTest {
     @Autowired
     private MockMvc client;
     @Autowired
-    private CommanyRepository commanyRepository;
+    private CompanyRepository commanyRepository;
     @Autowired
     private JacksonTester<List<Company>> listJson;
 

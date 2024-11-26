@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class CommanyRepository {
+public class CompanyRepository {
     private final List<Company> companies = new ArrayList<>();
 
-    public CommanyRepository() {
+    public CompanyRepository() {
         companies.add(new Company(1, "OOCL"));
         companies.add(new Company(2, "ThoughtWorks"));
     }
